@@ -10,49 +10,51 @@ import dao.PersonService;
 
 import java.util.List;
 
+
 public class PersonDaoImplTest {
     private AbstractApplicationContext context;
     private PersonService personService;
-    private Person Taras;
-    private Person Petro;
-    private Person Victor;
+    private Person taras;
+    private Person petro;
+    private Person victor;
 
     @Before
     public void init() {
         context = new AnnotationConfigApplicationContext(AppConfiguration.class);
         personService = (PersonService) context.getBean("personService");
-        Taras = new Person();
-        Petro = new Person();
-        Victor = new Person();
-        Taras.setAge(20).setFirstName("Taras").setLastName("Taras");
-        Petro.setAge(21).setFirstName("Petro").setLastName("Ivanov");
-        Victor.setAge(22).setFirstName("Victor").setLastName("Tytov");
+        taras = new Person();
+        petro = new Person();
+        victor = new Person();
+        taras.setAge(20).setFirstName("Taras").setLastName("Ivanov");
+        petro.setAge(21).setFirstName("Petro").setLastName("Petrov");
+        victor.setAge(22).setFirstName("Victor").setLastName("Tytov");
     }
 
     @Test
     public void addPersonTest() {
-        personService.addPerson(Taras);
-        personService.addPerson(Petro);
-        personService.addPerson(Victor);
-        Assert.assertNotNull(personService.find(49));
+        personService.addPerson(taras);
+        personService.addPerson(petro);
+        personService.addPerson(victor);
+        Assert.assertNotNull(personService.find(2));
     }
 
     @Test
     public void editPersonTest() {
-        Taras.setFirstName("Taras").setLastName("Taras").setAge(20);
-        personService.editPerson(Taras, 50);
-        Assert.assertEquals(personService.find(50).getFirstName(),"Taras");
+        taras.setFirstName("Taras").setLastName("Ivanov").setAge(20);
+        personService.editPerson(taras, 50);
+        Assert.assertNotNull(personService.find(50));
     }
 
     @Test
     public void deletePersonTest() {
-        personService.deletePerson(49);
+        personService.editPerson(victor, 3);
+        personService.deletePerson(3);
+        Assert.assertNull(personService.find(3));
     }
 
     @Test
     public void findPersonTest() {
-        Person testPerson = personService.find(50);
-        Assert.assertEquals(testPerson.getFirstName(), "Petro");
+        Assert.assertNotNull(personService.find(50));
     }
 
     @Test

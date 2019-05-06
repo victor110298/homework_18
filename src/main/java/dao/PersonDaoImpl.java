@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This class allows the component scanning
@@ -41,8 +42,8 @@ public class PersonDaoImpl implements PersonDao {
         log.info("Person Deleted!!");
     }
 
-    public Person find(int personId) {
-        return (Person) jdbcTemplate.queryForObject(SELECT, new Object[]{personId}, new BeanPropertyRowMapper(Person.class));
+    public Optional<Person> find(int personId) {
+        return Optional.of((Person) jdbcTemplate.queryForObject(SELECT, new Object[]{personId}, new BeanPropertyRowMapper(Person.class)));
     }
 
     public List<Person> findAll() {

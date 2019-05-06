@@ -1,10 +1,12 @@
 package dao;
 
 import entity.Person;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * This class implements PersonService
@@ -12,6 +14,7 @@ import java.util.List;
  */
 
 @Service("personService")
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonServiceImpl implements PersonService {
     @Autowired
     PersonDao personDao;
@@ -28,7 +31,7 @@ public class PersonServiceImpl implements PersonService {
         personDao.deletePerson(personId);
     }
 
-    public Person find(int personId) {
+    public Optional<Person> find(int personId) {
         return personDao.find(personId);
     }
 
