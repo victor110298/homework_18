@@ -42,8 +42,8 @@ public class PersonDaoImpl implements PersonDao {
         log.info("Person Deleted!!");
     }
 
-    public Optional<Person> find(int personId) {
-        return Optional.of((Person) jdbcTemplate.queryForObject(SELECT, new Object[]{personId}, new BeanPropertyRowMapper(Person.class)));
+    public Person find(int personId) {
+        return (Person) jdbcTemplate.queryForObject(SELECT, new Object[]{personId}, new BeanPropertyRowMapper(Person.class));
     }
 
     public List<Person> findAll() {

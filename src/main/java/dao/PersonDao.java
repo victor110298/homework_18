@@ -3,7 +3,6 @@ package dao;
 import entity.Person;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  *  This interface contains methods
@@ -17,7 +16,7 @@ public interface PersonDao {
 
     void deletePerson(int personId);
 
-    Optional<Person> find(int personId);
+    Person find(int personId);
 
     List<Person> findAll();
 }

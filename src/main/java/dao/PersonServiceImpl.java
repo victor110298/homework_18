@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * This class implements PersonService
@@ -31,7 +30,7 @@ public class PersonServiceImpl implements PersonService {
         personDao.deletePerson(personId);
     }
 
-    public Optional<Person> find(int personId) {
+    public Person find(int personId) {
         return personDao.find(personId);
     }
 
