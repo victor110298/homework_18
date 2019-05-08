@@ -1,14 +1,17 @@
 import config.AppConfiguration;
+import dao.PersonService;
 import entity.Person;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
-import dao.PersonService;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 
 public class PersonDaoImplTest {
@@ -35,34 +38,34 @@ public class PersonDaoImplTest {
         personService.addPerson(taras);
         personService.addPerson(petro);
         personService.addPerson(victor);
-        Assert.assertNotNull(personService.find(2));
+        assertNotNull(personService.find(2));
     }
 
     @Test
     public void editPersonTest() {
         taras.setFirstName("Taras").setLastName("Ivanov").setAge(20);
         personService.editPerson(taras, 50);
-        Assert.assertNotNull(personService.find(50));
+        assertNotNull(personService.find(50));
     }
 
     @Test
     public void deletePersonTest() {
         personService.editPerson(victor, 3);
         personService.deletePerson(3);
-        Assert.assertNull(personService.find(3));
+        assertNull(personService.find(3));
     }
 
     @Test
     public void findPersonTest() {
-        Assert.assertNotNull(personService.find(50));
+        assertNotNull(personService.find(50));
     }
 
     @Test
     public void findAllPersonTest() {
         List<Person> personList = personService.findAll();
-        Assert.assertEquals(personList.get(0).getLastName(), "Ivanov");
-        Assert.assertEquals(personList.get(1).getLastName(), "Petrov");
-        Assert.assertEquals(personList.get(2).getLastName(), "Tytov");
+        assertEquals(personList.get(0).getLastName(), "Ivanov");
+        assertEquals(personList.get(1).getLastName(), "Petrov");
+        assertEquals(personList.get(2).getLastName(), "Tytov");
     }
 
     @After

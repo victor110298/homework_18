@@ -24,7 +24,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public void editPerson(Person person, int personId) {
-        personDao.editPerson(person, personId);
+        personDao.editPerson(person);
     }
 
     public void deletePerson(int personId) {

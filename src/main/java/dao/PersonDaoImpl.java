@@ -32,8 +32,8 @@ public class PersonDaoImpl implements PersonDao {
         log.info("Person Added!!");
     }
 
-    public void editPerson(Person person, int personId) {
-        jdbcTemplate.update(UPDATE, person.getFirstName(), person.getLastName(), person.getAge(), personId);
+    public void editPerson(Person person) {
+        jdbcTemplate.update(UPDATE, person.getFirstName(), person.getLastName(), person.getAge(), person.getId());
         log.info("Person Updated!!");
     }
 
